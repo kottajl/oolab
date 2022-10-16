@@ -2,45 +2,59 @@ package agh.ics.oop;
 
 public class World {
     public static void main (String[] args) {
-        System.out.println("-> system wystartował");
-        // String[] input= {"f", "f", "r", "x", "b", "l"};                   // INPUT
-        Direction.Direct[] arguments= stringToEnum(args);
-        run(arguments);
-        System.out.print("-> system zakończył działanie");
+        // sprawdzanie Vector2d
+        Vector2d position1= new Vector2d(1,2);
+        System.out.println(position1);
+        Vector2d position2= new Vector2d(-2,1);
+        System.out.println(position2);
+        System.out.println(position1.add(position2));
+
+        //  sprawdzanie MoveDirection
+        MapDirection myOrientation= MapDirection.WEST;
+        if (!myOrientation.toString().equals("Zachód"))
+            System.out.println("Błąd w MapDirection.toString()");
+        if (myOrientation.next() != MapDirection.NORTH)
+            System.out.println("Błąd w MapDirection.next()");
+        if (myOrientation.previous() != MapDirection.SOUTH)
+            System.out.println("Błąd w MapDirection.previous()");
+        if (!myOrientation.toUnitVector().equals(MapDirection.EAST.toUnitVector().opposite()))
+            System.out.println("Błąd w MapDirection.toUnitVector");
+
+        System.out.println("Sprawdzanie zakończone!");
     }
 
-    public static Direction.Direct[] stringToEnum (String[] input) {
+    public static Direction[] stringToEnum (String[] input) {
         int numberOfElements= 0;
         for (String x: input)
             if (x.equals("f") || x.equals("b") || x.equals("r") || x.equals("l"))
                 numberOfElements++;
 
-        Direction.Direct[] output= new Direction.Direct[numberOfElements];
+        Direction[] output= new Direction[numberOfElements];
         int i= 0;
         for (String x: input) {
             switch (x) {
                 case "f":
-                    output[i++] = Direction.Direct.f;
+                    output[i++]= Direction.f;
                     break;
                 case "b":
-                    output[i++] = Direction.Direct.b;
+                    output[i++]= Direction.b;
                     break;
                 case "r":
-                    output[i++] = Direction.Direct.r;
+                    output[i++]= Direction.r;
                     break;
                 case "l":
-                    output[i++] = Direction.Direct.l;
+                    output[i++]= Direction.l;
                     break;
             }
         }
         return output;
     }
-    public static void run (Direction.Direct[] args) {
+    public static void run (Direction[] args) {
         //System.out.println("zwierzak zmierza ku przodowi");
 
         // zad 11-12 (wypisywanie argumentów)
         int counter= 0;
-        for (Direction.Direct x: args) {
+        for (Direction x: args) {
             if (counter != 0)
                 System.out.print(", ");
             counter++;
@@ -50,7 +64,7 @@ public class World {
 
         // zad 14-15 (wypisywanie ruchu zwierzaka)
         System.out.println("Start");
-        for (Direction.Direct x: args) {
+        for (Direction x: args) {
             String message= switch (x) {
                 case f -> "Zwierzak idzie do przodu";
                 case b -> "Zwierzak idzie do tyłu";
