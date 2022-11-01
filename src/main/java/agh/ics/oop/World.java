@@ -3,14 +3,14 @@ package agh.ics.oop;
 public class World {
     public static void main (String[] args) {
         // sprawdzanie Vector2d
-        Vector2d position1= new Vector2d(1,2);
+        /*Vector2d position1= new Vector2d(1,2);
         System.out.println(position1);
         Vector2d position2= new Vector2d(-2,1);
         System.out.println(position2);
-        System.out.println(position1.add(position2));
+        System.out.println(position1.add(position2));*/
 
         //  sprawdzanie MoveDirection
-        MapDirection myOrientation= MapDirection.WEST;
+        /*MapDirection myOrientation= MapDirection.WEST;
         if (!myOrientation.toString().equals("Zachód"))
             System.out.println("Błąd w MapDirection.toString()");
         if (myOrientation.next() != MapDirection.NORTH)
@@ -20,11 +20,11 @@ public class World {
         if (!myOrientation.toUnitVector().equals(MapDirection.EAST.toUnitVector().opposite()))
             System.out.println("Błąd w MapDirection.toUnitVector");
 
-        System.out.println("Sprawdzanie zakończone!\n");
+        System.out.println("Sprawdzanie zakończone!\n");*/
 
         // lab3 - tworzenie Animal i wyznaczanie trasy
-        Animal myPet= new Animal();
-        System.out.println("Status przed wędrówką: " + myPet);
+        /*Animal myPet= new Animal();
+        System.out.println("Status przed wędrówką: " + myPet);*/
 
         /*myPet.move(MoveDirection.RIGHT);
         myPet.move(MoveDirection.FORWARD);
@@ -32,14 +32,21 @@ public class World {
         myPet.move(MoveDirection.FORWARD);
         System.out.println(myPet.toString());*/
 
-        OptionsParser myParser1= new OptionsParser();
+        /*OptionsParser myParser1= new OptionsParser();
         MoveDirection[] theOrders= myParser1.parse(args);
         for (MoveDirection x: theOrders)
             myPet.move(x);
-        System.out.println("Status po wędrówce: " + myPet);
+        System.out.println("Status po wędrówce: " + myPet);*/
 
         // Odpowiedź na pytanie z polecenia 10 zajduje się w klasie Animal.
 
+        // lab4 - zad 6
+        MoveDirection[] directions = new OptionsParser().parse(args);
+        IWorldMap map = new RectangularMap(10, 5);
+        Vector2d[] positions = { new Vector2d(2,2), new Vector2d(3,4) };
+        IEngine engine = new SimulationEngine(directions, map, positions);
+        engine.run();
+        System.out.println(map);
     }
 
     public static Direction[] stringToEnum (String[] input) {

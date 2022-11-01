@@ -1,14 +1,46 @@
 package agh.ics.oop;
 
+import java.util.Map;
 import java.util.Objects;
 
 public class Animal {
     private MapDirection myDirection= MapDirection.NORTH;
-    private Vector2d myLocation= new Vector2d(2, 2);
+    private Vector2d myLocation;
+    private IWorldMap map;
+
+    /*public Animal () {
+        this.myLocation= new Vector2d(2, 2);
+    }*/
+
+    public Animal (IWorldMap map) {
+        this(map, new Vector2d(2, 2));
+        //this.map= map;
+        //this.myLocation= new Vector2d(2, 2);
+    }
+
+    public Animal (IWorldMap map, Vector2d initialPosition) {
+        this.map= map;
+        this.myLocation= initialPosition;
+    }
+
+    public Vector2d getMyLocation() {
+        return myLocation;
+    }
+
+    public String toText () {
+        return "Skierowany na: " + myDirection.toString() + ", lokalizacja: " + myLocation.toString();
+    }
 
     @Override
     public String toString () {
-        return "Skierowany na: " + myDirection.toString() + ", lokalizacja: " + myLocation.toString();
+        String s= switch (myDirection) {
+            case NORTH -> "^";
+            case SOUTH -> "v";
+            case WEST -> "<";
+            case EAST -> ">";
+        };
+
+        return s;
     }
 
     public boolean isAt (Vector2d position) {
@@ -25,8 +57,9 @@ public class Animal {
             case BACKWARD -> tempLocation= myLocation.subtract(myDirection.toUnitVector());
         }
 
-        if (tempLocation.precedes(new Vector2d (4, 4)) && tempLocation.follows(new Vector2d(0, 0)))
+        if (map.canMoveTo(tempLocation))
             myLocation= tempLocation;
+
     }
 
     public boolean equals (Object other) {

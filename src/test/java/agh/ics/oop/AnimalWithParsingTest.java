@@ -9,7 +9,7 @@ public class AnimalWithParsingTest {
 
     @Test
     public void test1 () {
-        Animal cat= new Animal();
+        Animal cat= new Animal(null);
         String[] str= {"forward", "forward", "backward", "left", "backward"};
         MoveDirection[] orders= myParser.parse(str);
         for (MoveDirection x: orders)
@@ -19,7 +19,7 @@ public class AnimalWithParsingTest {
 
     @Test
     public void test2 () {
-        Animal dog= new Animal();
+        Animal dog= new Animal(null);
         String[] str= {"f", "r", "f", "f", "f", "f", "r", "b", "b", "l", "b"};
         MoveDirection[] orders= myParser.parse(str);
         for (MoveDirection x: orders)
@@ -29,7 +29,7 @@ public class AnimalWithParsingTest {
 
     @Test
     public void test3 () {
-        Animal cow= new Animal();
+        Animal cow= new Animal(null);
         String[] str= {"backward", "jump", "left", "forward", "right", "eatGrass"};
         MoveDirection[] orders= myParser.parse(str);
         for (MoveDirection x: orders)
@@ -39,7 +39,7 @@ public class AnimalWithParsingTest {
 
     @Test
     public void test4 () {
-        Animal snake= new Animal();
+        Animal snake= new Animal(null);
         String[] str= {"f", "backward", "b", "backward", "l", "f", "forward", "right"};
         MoveDirection[] orders= myParser.parse(str);
         for (MoveDirection x: orders)
