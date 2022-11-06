@@ -51,6 +51,7 @@ public class Vector2d {
         return newPoint;
     }
 
+    @Override
     public boolean equals (Object other) {
         if (this == other)
             return true;

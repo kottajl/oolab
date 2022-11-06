@@ -1,5 +1,7 @@
 package agh.ics.oop;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 public class World {
     public static void main (String[] args) {
         // sprawdzanie Vector2d
@@ -40,6 +42,8 @@ public class World {
 
         // Odpowiedź na pytanie z polecenia 10 zajduje się w klasie Animal.
 
+        // input: f b r l f f r r f f f f f f f f
+
         // lab4 - zad 6
         MoveDirection[] directions = new OptionsParser().parse(args);
         IWorldMap map = new RectangularMap(10, 5);
@@ -47,6 +51,14 @@ public class World {
         IEngine engine = new SimulationEngine(directions, map, positions);
         engine.run();
         System.out.println(map);
+
+        //lab5
+        MoveDirection[] directions2 = new OptionsParser().parse(args);
+        IWorldMap map2 = new GrassField(10);
+        Vector2d[] positions2 = { new Vector2d(2,2), new Vector2d(3,4) };
+        IEngine engine2 = new SimulationEngine(directions2, map2, positions2);
+        engine2.run();
+        System.out.println(map2);
     }
 
     public static Direction[] stringToEnum (String[] input) {

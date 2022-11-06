@@ -3,12 +3,7 @@ package agh.ics.oop;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class EngineTest {
-    /**
-     * Zawartość identyczna jak w klasie MapDirectionTest - średnio da się przetestować jedno
-     *  nie kierzystając jednocześnie z drugiego (pomijam w ogóle korzystanie z klasy GrassField,
-     *  bo jest ona bardziej skomplikowana).
-     */
+public class RectangularMapTest {
 
     // one animal - basic test with incorrect input
     @Test

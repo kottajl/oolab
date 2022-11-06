@@ -1,6 +1,5 @@
 package agh.ics.oop;
 
-import java.util.Map;
 import java.util.Objects;
 
 public class Animal {
@@ -8,14 +7,8 @@ public class Animal {
     private Vector2d myLocation;
     private IWorldMap map;
 
-    /*public Animal () {
-        this.myLocation= new Vector2d(2, 2);
-    }*/
-
     public Animal (IWorldMap map) {
         this(map, new Vector2d(2, 2));
-        //this.map= map;
-        //this.myLocation= new Vector2d(2, 2);
     }
 
     public Animal (IWorldMap map, Vector2d initialPosition) {
@@ -57,11 +50,13 @@ public class Animal {
             case BACKWARD -> tempLocation= myLocation.subtract(myDirection.toUnitVector());
         }
 
-        if (map.canMoveTo(tempLocation))
+        if (map.canMoveTo(tempLocation)) {
             myLocation= tempLocation;
-
+            map.movedTo(myLocation);
+        }
     }
 
+    @Override
     public boolean equals (Object other) {
         if (this == other)
             return true;
@@ -79,8 +74,8 @@ public class Animal {
         return Objects.hash(myDirection, myLocation);
     }
 
-    // Odpowiedź na pytanie 10:
-    /*
+    // (lab3) Odpowiedź na pytanie 10:
+    /**
     Myślę, że najlepiej byłoby zrobić tak, aby klasa Animal dziedziczyła
     z jakiejś innej klasy (np. o nazwie PlaceHolder), w której znajdowałaby
     się dwuwymiarowa macierz typu boolean określająca czy miejsce

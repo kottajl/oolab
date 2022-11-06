@@ -18,7 +18,15 @@ public interface IWorldMap {
     boolean canMoveTo (Vector2d position);
 
     /**
-     * Place a animal on the map.
+     * Face the consequences of moving an animal on this very position.
+     *
+     * @param position
+     *            The position where an animal has moved.
+     */
+    void movedTo (Vector2d position);
+
+    /**
+     * Place an animal on the map.
      *
      * @param animal
      *            The animal to place on the map.
