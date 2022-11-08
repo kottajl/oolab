@@ -1,47 +1,7 @@
 package agh.ics.oop;
 
-import java.util.concurrent.ThreadLocalRandom;
-
 public class World {
     public static void main (String[] args) {
-        // sprawdzanie Vector2d
-        /*Vector2d position1= new Vector2d(1,2);
-        System.out.println(position1);
-        Vector2d position2= new Vector2d(-2,1);
-        System.out.println(position2);
-        System.out.println(position1.add(position2));*/
-
-        //  sprawdzanie MoveDirection
-        /*MapDirection myOrientation= MapDirection.WEST;
-        if (!myOrientation.toString().equals("Zachód"))
-            System.out.println("Błąd w MapDirection.toString()");
-        if (myOrientation.next() != MapDirection.NORTH)
-            System.out.println("Błąd w MapDirection.next()");
-        if (myOrientation.previous() != MapDirection.SOUTH)
-            System.out.println("Błąd w MapDirection.previous()");
-        if (!myOrientation.toUnitVector().equals(MapDirection.EAST.toUnitVector().opposite()))
-            System.out.println("Błąd w MapDirection.toUnitVector");
-
-        System.out.println("Sprawdzanie zakończone!\n");*/
-
-        // lab3 - tworzenie Animal i wyznaczanie trasy
-        /*Animal myPet= new Animal();
-        System.out.println("Status przed wędrówką: " + myPet);*/
-
-        /*myPet.move(MoveDirection.RIGHT);
-        myPet.move(MoveDirection.FORWARD);
-        myPet.move(MoveDirection.FORWARD);
-        myPet.move(MoveDirection.FORWARD);
-        System.out.println(myPet.toString());*/
-
-        /*OptionsParser myParser1= new OptionsParser();
-        MoveDirection[] theOrders= myParser1.parse(args);
-        for (MoveDirection x: theOrders)
-            myPet.move(x);
-        System.out.println("Status po wędrówce: " + myPet);*/
-
-        // Odpowiedź na pytanie z polecenia 10 zajduje się w klasie Animal.
-
         // input: f b r l f f r r f f f f f f f f
 
         // lab4 - zad 6

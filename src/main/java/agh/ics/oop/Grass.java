@@ -36,9 +36,7 @@ public class Grass {
             return false;
         Grass that = (Grass) other;
 
-        if (this.position.equals(that.position))
-            return true;
-        return false;
+        return this.position.equals(that.position);
     }
 
     @Override

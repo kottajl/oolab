@@ -1,11 +1,14 @@
 package agh.ics.oop;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Objects;
 
 public class Animal {
     private MapDirection myDirection= MapDirection.NORTH;
     private Vector2d myLocation;
-    private IWorldMap map;
+    private final IWorldMap map;
+    private final List <IPositionChangeObserver> observerList= new LinkedList<>();
 
     public Animal (IWorldMap map) {
         this(map, new Vector2d(2, 2));
@@ -51,9 +54,24 @@ public class Animal {
         }
 
         if (map.canMoveTo(tempLocation)) {
+            this.positionChanged(this.myLocation, tempLocation);
             myLocation= tempLocation;
             map.movedTo(myLocation);
         }
+    }
+
+    public void addObserver (IPositionChangeObserver observer) {
+        if (!observerList.contains(observer))
+            observerList.add(observer);
+    }
+
+    public void removeObserver (IPositionChangeObserver observer) {
+        observerList.remove(observer);
+    }
+
+    private void positionChanged (Vector2d oldPosition, Vector2d newPosition) {
+        for (IPositionChangeObserver observer: observerList)
+            observer.positionChanged(oldPosition, newPosition);
     }
 
     @Override

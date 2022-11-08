@@ -1,16 +1,17 @@
 package agh.ics.oop;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
-public abstract class AbstractWorldMap implements IWorldMap {
-    protected List<Animal> animalList= new ArrayList<>();
+public abstract class AbstractWorldMap implements IWorldMap, IPositionChangeObserver {
+
+    protected Map <Vector2d, Animal> animalList = new HashMap<>();
 
     @Override
     public boolean place (Animal animal) {
         // Place an animal.
         if (canMoveTo(animal.getMyLocation())) {
-            animalList.add(animal);
+            animalList.put(animal.getMyLocation(), animal);
             return true;
         }
         return false;
@@ -24,17 +25,13 @@ public abstract class AbstractWorldMap implements IWorldMap {
 
     public boolean isOccupiedByAnimal (Vector2d position) {
         // Is it being occupied by another animal?
-        for (Animal animal: animalList) {
-            if (animal.isAt(position))
-                return true;
-        }
-        return false;
+        return animalList.containsKey(position);
     }
 
     @Override
     public boolean canMoveTo (Vector2d position) {
         // Refers to animal - grass cannot move.
-        return !isOccupiedByAnimal(position) && position.follows(new Vector2d(0, 0));
+        return !isOccupiedByAnimal(position);
     }
 
     @Override
@@ -48,5 +45,12 @@ public abstract class AbstractWorldMap implements IWorldMap {
         Vector2d maxCorner= defineMaxCorner();
 
         return new MapVisualizer(this).draw(minCorner, maxCorner);
+    }
+
+    @Override
+    public void positionChanged (Vector2d oldPosition, Vector2d newPosition) {
+        Animal tempAnimal= animalList.get(oldPosition);
+        animalList.remove(oldPosition);
+        animalList.put(newPosition, tempAnimal);
     }
 }

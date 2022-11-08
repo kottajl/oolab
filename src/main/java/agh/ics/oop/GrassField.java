@@ -1,13 +1,13 @@
 package agh.ics.oop;
 
 import java.lang.Math;
-import java.util.List;
-import java.util.LinkedList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class GrassField extends AbstractWorldMap {
     private final int numOfGrasses;
-    private List<Grass> cordsOfGrasses= new LinkedList<>();
+    private final Map<Vector2d, Grass> cordsOfGrasses= new HashMap<>();
 
     public GrassField (int numOfGrasses) {
         this.numOfGrasses= numOfGrasses;
@@ -25,47 +25,43 @@ public class GrassField extends AbstractWorldMap {
             temp= new Vector2d(randomX, randomY);
         } while (isOccupied(temp));
 
-        cordsOfGrasses.add(new Grass(temp));
+        cordsOfGrasses.put(temp, new Grass(temp));
     }
 
     @Override
     public Object objectAt (Vector2d position) {
-        for (Animal animal: animalList) {
-            if (animal.isAt(position))
-                return animal;
-        }
-        for (Grass grass: cordsOfGrasses) {
-            if (grass.getPosition().equals(position))
-                return grass;
-        }
+        if (animalList.get(position) != null)
+            return animalList.get(position);
 
-        return null;
+        return cordsOfGrasses.get(position);
     }
 
     @Override
     public void movedTo (Vector2d position) {
-        if (cordsOfGrasses.remove(new Grass(position)))
+        if (cordsOfGrasses.containsKey(position)) {
+            cordsOfGrasses.remove(position);
             generateNewGrass((int)Math.sqrt(10 * numOfGrasses));
+        }
     }
 
     protected Vector2d defineMinCorner () {
-        Vector2d minCorner= cordsOfGrasses.get(0).getPosition();
+        Vector2d minCorner= new Vector2d( (int)Math.sqrt(10 * numOfGrasses), (int)Math.sqrt(10 * numOfGrasses) );
 
-        for (Animal animal: animalList)
-            minCorner= minCorner.lowerLeft(animal.getMyLocation());
-        for (Grass grass: cordsOfGrasses)
-            minCorner= minCorner.lowerLeft(grass.getPosition());
+        for (Vector2d key: animalList.keySet())
+            minCorner= minCorner.lowerLeft(key);
+        for (Vector2d key: cordsOfGrasses.keySet())
+            minCorner= minCorner.lowerLeft(key);
 
         return minCorner;
     }
 
     protected Vector2d defineMaxCorner () {
-        Vector2d maxCorner= cordsOfGrasses.get(0).getPosition();
+        Vector2d maxCorner= new Vector2d(0, 0);
 
-        for (Animal animal: animalList)
-            maxCorner= maxCorner.upperRight(animal.getMyLocation());
-        for (Grass grass: cordsOfGrasses)
-            maxCorner= maxCorner.upperRight(grass.getPosition());
+        for (Vector2d key: animalList.keySet())
+            maxCorner= maxCorner.upperRight(key);
+        for (Vector2d key: cordsOfGrasses.keySet())
+            maxCorner= maxCorner.upperRight(key);
 
         return maxCorner;
     }

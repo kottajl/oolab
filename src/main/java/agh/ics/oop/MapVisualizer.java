@@ -10,11 +10,11 @@ public class MapVisualizer {
     private static final String EMPTY_CELL = " ";
     private static final String FRAME_SEGMENT = "-";
     private static final String CELL_SEGMENT = "|";
-    private IWorldMap map;
+    private final IWorldMap map;
 
     /**
      * Initializes the MapVisualizer with an instance of map to visualize.
-     * @param map
+     * @param map an instance of map to visualize
      */
     public MapVisualizer (IWorldMap map) {
         this.map = map;

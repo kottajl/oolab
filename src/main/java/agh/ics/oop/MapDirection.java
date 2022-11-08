@@ -3,7 +3,7 @@ package agh.ics.oop;
 public enum MapDirection {
     NORTH, SOUTH, WEST, EAST;
 
-    public String toString () {
+        public String toString () {
         switch (this) {
             case NORTH: return "Północ";
             case SOUTH: return "Południe";
@@ -40,8 +40,7 @@ public enum MapDirection {
             case WEST: return new Vector2d(-1, 0);
             case EAST: return new Vector2d(1, 0);
 
-            default: return new Vector2d(0,0);
+            default: throw new RuntimeException();
         }
     }
-
 }

@@ -50,7 +50,7 @@ public class GrassFieldTest {
         IEngine engine= new SimulationEngine(directions, map, positions);
         engine.run();
 
-        Vector2d[] goodOutput= {new Vector2d(0, 0), new Vector2d(1, 3)};
+        Vector2d[] goodOutput= {new Vector2d(-1, 0), new Vector2d(1, 3)};
         for (int i=0; i < positions.length; i++)
             assertEquals(positions[i], goodOutput[i]);
         //System.out.println(map);
@@ -67,7 +67,7 @@ public class GrassFieldTest {
         IEngine engine= new SimulationEngine(directions, map, positions);
         engine.run();
 
-        Vector2d[] goodOutput= {new Vector2d(0, 1), new Vector2d(1, 5), new Vector2d(0, 0)};
+        Vector2d[] goodOutput= {new Vector2d(-1, 1), new Vector2d(1, 5), new Vector2d(0, -1)};
         for (int i=0; i < positions.length; i++)
             assertEquals(positions[i], goodOutput[i]);
         //System.out.println(map);

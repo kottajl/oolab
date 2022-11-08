@@ -1,9 +1,9 @@
 package agh.ics.oop;
 
 public class SimulationEngine implements IEngine {
-    private MoveDirection[] moves;
-    private Vector2d[] positions;
-    private Animal[] animals;
+    private final MoveDirection[] moves;
+    private final Vector2d[] positions;
+    private final Animal[] animals;
 
     public SimulationEngine (MoveDirection[] moves, IWorldMap map, Vector2d[] positions) {
         this.moves= moves;
@@ -12,6 +12,7 @@ public class SimulationEngine implements IEngine {
         animals= new Animal[positions.length];
         for (int i=0; i < positions.length; i++) {
             animals[i]= new Animal(map, positions[i]);
+            animals[i].addObserver((IPositionChangeObserver) map);
             map.place(animals[i]);
         }
     }
