@@ -53,4 +53,6 @@ public interface IWorldMap {
      * @return Object or null if the position is not occupied.
      */
     Object objectAt (Vector2d position);
+    Vector2d defineMinCorner();
+    Vector2d defineMaxCorner();
 }

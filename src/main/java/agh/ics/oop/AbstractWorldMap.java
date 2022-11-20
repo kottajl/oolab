@@ -14,7 +14,7 @@ public abstract class AbstractWorldMap implements IWorldMap, IPositionChangeObse
             animalList.put(animal.getMyLocation(), animal);
             return true;
         }
-        return false;
+        throw new IllegalArgumentException("Can't spawn an animal in " + animal.getMyLocation());
     }
 
     @Override
@@ -37,8 +37,10 @@ public abstract class AbstractWorldMap implements IWorldMap, IPositionChangeObse
     @Override
     public void movedTo (Vector2d position) {};
 
-    protected abstract Vector2d defineMinCorner();
-    protected abstract Vector2d defineMaxCorner();
+    @Override
+    public abstract Vector2d defineMinCorner();
+    @Override
+    public abstract Vector2d defineMaxCorner();
 
     public String toString () {
         Vector2d minCorner= defineMinCorner();

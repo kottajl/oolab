@@ -18,12 +18,12 @@ public class RectangularMap extends AbstractWorldMap {
     public Object objectAt (Vector2d position) { return animalList.get(position); }
 
     @Override
-    protected Vector2d defineMinCorner () {
+    public Vector2d defineMinCorner () {
         return new Vector2d(0, 0);
     }
 
     @Override
-    protected Vector2d defineMaxCorner () {
+    public Vector2d defineMaxCorner () {
         return new Vector2d(width - 1, height - 1);
     }
 }

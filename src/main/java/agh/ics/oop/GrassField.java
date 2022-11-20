@@ -8,6 +8,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public class GrassField extends AbstractWorldMap {
     private final int numOfGrasses;
     private final Map<Vector2d, Grass> cordsOfGrasses= new HashMap<>();
+    private MapBoundary mapB;
 
     public GrassField (int numOfGrasses) {
         this.numOfGrasses= numOfGrasses;
@@ -25,7 +26,11 @@ public class GrassField extends AbstractWorldMap {
             temp= new Vector2d(randomX, randomY);
         } while (isOccupied(temp));
 
-        cordsOfGrasses.put(temp, new Grass(temp));
+        Grass tempGrass= new Grass(temp);
+        cordsOfGrasses.put(temp, tempGrass);
+
+        /*mapB.xElements.add(tempGrass);
+        mapB.yElements.add(tempGrass);*/
     }
 
     @Override
@@ -44,7 +49,7 @@ public class GrassField extends AbstractWorldMap {
         }
     }
 
-    protected Vector2d defineMinCorner () {
+    public Vector2d defineMinCorner () {
         Vector2d minCorner= new Vector2d( (int)Math.sqrt(10 * numOfGrasses), (int)Math.sqrt(10 * numOfGrasses) );
 
         for (Vector2d key: animalList.keySet())
@@ -53,9 +58,27 @@ public class GrassField extends AbstractWorldMap {
             minCorner= minCorner.lowerLeft(key);
 
         return minCorner;
+
+        // próba nowego podejścia - niestety nie działa, jakoś źle używam tego TreeSeta
+
+        /*Vector2d wnk1, wnk2;
+        //Object tempObj= mapB.xElements.first();
+
+        if (tempObj instanceof Grass)
+            wnk1= new Vector2d(((Grass)tempObj).getPosition().x, ((Grass)tempObj).getPosition().y);
+        else
+            wnk1= new Vector2d(((Animal)tempObj).getMyLocation().x, ((Animal)tempObj).getMyLocation().y);
+
+        //tempObj= mapB.yElements.first();
+        if (tempObj instanceof Grass)
+            wnk2= new Vector2d(((Grass)tempObj).getPosition().x, ((Grass)tempObj).getPosition().y);
+        else
+            wnk2= new Vector2d(((Animal)tempObj).getMyLocation().x, ((Animal)tempObj).getMyLocation().y);
+
+        return wnk1.lowerLeft(wnk2);*/
     }
 
-    protected Vector2d defineMaxCorner () {
+    public Vector2d defineMaxCorner () {
         Vector2d maxCorner= new Vector2d(0, 0);
 
         for (Vector2d key: animalList.keySet())
@@ -64,6 +87,24 @@ public class GrassField extends AbstractWorldMap {
             maxCorner= maxCorner.upperRight(key);
 
         return maxCorner;
+
+        // próba nowego podejścia - niestety nie działa, jakoś źle używam tego TreeSeta
+
+        /*Vector2d wnk1, wnk2;
+        //Object tempObj= mapB.xElements.last();
+
+        if (tempObj instanceof Grass)
+            wnk1= new Vector2d(((Grass)tempObj).getPosition().x, ((Grass)tempObj).getPosition().y);
+        else
+            wnk1= new Vector2d(((Animal)tempObj).getMyLocation().x, ((Animal)tempObj).getMyLocation().y);
+
+        //tempObj= mapB.yElements.last();
+        if (tempObj instanceof Grass)
+            wnk2= new Vector2d(((Grass)tempObj).getPosition().x, ((Grass)tempObj).getPosition().y);
+        else
+            wnk2= new Vector2d(((Animal)tempObj).getMyLocation().x, ((Animal)tempObj).getMyLocation().y);
+
+        return wnk1.upperRight(wnk2);*/
     }
 
 }

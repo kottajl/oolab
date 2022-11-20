@@ -10,7 +10,6 @@ public class AnimalWithParsingTest {
 
     // Musiałem wykomentować, bo testy te były pisane, gdy nie używałem mapy. Teraz te testy
     // sprawdzałyby tylko niepoprawną aktualnie implementację.
-
     /*@Test
     public void test1 () {
         Animal cat= new Animal(null);

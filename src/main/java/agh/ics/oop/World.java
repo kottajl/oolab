@@ -1,24 +1,42 @@
 package agh.ics.oop;
 
+import agh.ics.oop.gui.App;
+import javafx.application.Application;
+
 public class World {
     public static void main (String[] args) {
         // input: f b r l f f r r f f f f f f f f
 
-        // lab4 - zad 6
-        MoveDirection[] directions = new OptionsParser().parse(args);
-        IWorldMap map = new RectangularMap(10, 5);
-        Vector2d[] positions = { new Vector2d(2,2), new Vector2d(3,4) };
-        IEngine engine = new SimulationEngine(directions, map, positions);
-        engine.run();
-        System.out.println(map);
+        /*try {
+            // lab4 - zad 6
+            MoveDirection[] directions = new OptionsParser().parse(args);
+            IWorldMap map = new RectangularMap(10, 5);
+            Vector2d[] positions = {new Vector2d(2, 2), new Vector2d(3, 4)};
+            IEngine engine = new SimulationEngine(directions, map, positions);
+            engine.run();
+            System.out.println(map);
 
-        //lab5
-        MoveDirection[] directions2 = new OptionsParser().parse(args);
-        IWorldMap map2 = new GrassField(10);
-        Vector2d[] positions2 = { new Vector2d(2,2), new Vector2d(3,4) };
-        IEngine engine2 = new SimulationEngine(directions2, map2, positions2);
-        engine2.run();
-        System.out.println(map2);
+            //lab5
+            MoveDirection[] directions2 = new OptionsParser().parse(args);
+            IWorldMap map2 = new GrassField(10);
+            Vector2d[] positions2 = {new Vector2d(2, 2), new Vector2d(3, 4)};
+            IEngine engine2 = new SimulationEngine(directions2, map2, positions2);
+            engine2.run();
+            System.out.println(map2);
+
+            //lab7 - test placing two animals in the same coords
+            MoveDirection[] directions3 = new OptionsParser().parse(args);
+            IWorldMap map3 = new GrassField(10);
+            Vector2d[] positions3 = {new Vector2d(2, 2), new Vector2d(2, 2)};
+            IEngine engine3 = new SimulationEngine(directions3, map3, positions3);
+            engine3.run();
+            System.out.println(map3);
+        }
+        catch (IllegalArgumentException ex) {
+            System.out.println(ex);
+        }*/
+
+        Application.launch(App.class, args);
     }
 
     public static Direction[] stringToEnum (String[] input) {
