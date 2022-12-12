@@ -2,7 +2,7 @@ package agh.ics.oop;
 
 import java.util.Objects;
 
-public class Grass {
+public class Grass implements IMapElement {
     /**
      * W mojej opinii dodawanie tu klasy abstrakcyjnej AbstractWorldMapElement jest bez sensu, bo klasy
      * Animal oraz Grass mają stosunkowo mało cech wspólnych - praktycznie tylko coś takiego jak "pozycja",
@@ -24,6 +24,7 @@ public class Grass {
         return position;
     }
 
+    @Override
     public String toString () {
         return "*";
     }

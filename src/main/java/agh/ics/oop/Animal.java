@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
-public class Animal {
+public class Animal implements IMapElement {
     private MapDirection myDirection= MapDirection.NORTH;
     private Vector2d myLocation;
     private final IWorldMap map;
@@ -20,6 +20,10 @@ public class Animal {
     }
 
     public Vector2d getMyLocation() {
+        return myLocation;
+    }
+    @Override
+    public Vector2d getPosition () {
         return myLocation;
     }
 
