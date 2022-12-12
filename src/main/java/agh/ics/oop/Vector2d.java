@@ -56,6 +56,9 @@ public class Vector2d {
     public void nothing0 () {
         return;
     }
+    public void nothing1 () {
+        return;
+    }
 
     @Override
     public int hashCode() {
