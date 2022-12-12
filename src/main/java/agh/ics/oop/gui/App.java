@@ -9,6 +9,8 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.RowConstraints;
 import javafx.stage.Stage;
 import javafx.scene.layout.GridPane;
+
+import java.util.Arrays;
 import java.util.List;
 
 public class App extends Application {
@@ -42,7 +44,9 @@ public class App extends Application {
 
     @Override
     public void start (Stage primaryStage) /*throws Exception*/ {
-        // String[] input= doStringArray(getParameters().getRaw());     // <--- ?
+        //String[] input= doStringArray(getParameters().getRaw());     // <--- ?
+        String[] input= getParameters().getRaw().toArray(new String[0]);
+        System.out.println(Arrays.toString(input));
         String[] temp= {"f", "r", "l", "f", "f", "f"};
         //String[] temp= {"l", "l", "f", "f", "f", "f", "f", "f"};
 
