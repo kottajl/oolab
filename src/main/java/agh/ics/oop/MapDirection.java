@@ -43,4 +43,8 @@ public enum MapDirection {
             default: throw new RuntimeException();
         }
     }
+
+    public int nothing () {
+            return 7;
+    }
 }
